@@ -2,6 +2,8 @@ package com.bee.airsystem.dao;
 
 import com.bee.airsystem.db.MyDbUtils;
 import com.bee.airsystem.entity.UserBase;
+import com.bee.airsystem.utils.TimeUtils;
+import org.jetbrains.annotations.NotNull;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,16 +29,7 @@ public class UserBaseDAOImpl implements UserBaseDao {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                String userName = resultSet.getString("user_name");
-                String nickName = resultSet.getString("nick_name");
-                String sex = resultSet.getString("sex");
-                String workUnit = resultSet.getString("work_unit");
-                String identityCard = resultSet.getString("identity_card");
-                String email = resultSet.getString("email");
-                String phone = resultSet.getString("phone");
-                String createTime = resultSet.getString("create_time");
-                String updateTime = resultSet.getString("update_time");
-                UserBase userBase = new UserBase(userName, nickName, sex, workUnit, identityCard, email, phone, createTime, updateTime);
+                UserBase userBase = getUserBase(resultSet);
                 users.add(userBase);
             }
             preparedStatement.close();
@@ -77,7 +70,7 @@ public class UserBaseDAOImpl implements UserBaseDao {
 
             String sql = "UPDATE user_base SET " +
                     "user_name=?,nick_name=?,sex=?,work_unit=?," +
-                    "email=?,phone=?,update_time=? WHERE identity_card=?";
+                    "email=?,phone=?,password=?,update_time=? WHERE identity_card=?";
 
             PreparedStatement statement = cnn.prepareStatement(sql);
             statement.setString(1, userBase.getUserName());
@@ -86,9 +79,9 @@ public class UserBaseDAOImpl implements UserBaseDao {
             statement.setString(4, userBase.getWorkUnit());
             statement.setString(5, userBase.getEmail());
             statement.setString(6, userBase.getPhone());
-            statement.setString(7, now);
-            statement.setString(8, userBase.getIdentityCard());
-            statement.setString(1, userBase.getIdentityCard());
+            statement.setString(7, userBase.getPassWord());
+            statement.setString(8, now);
+            statement.setString(9, userBase.getIdentityCard());
             int code = statement.executeUpdate();
             statement.close();
             cnn.close();
@@ -104,10 +97,10 @@ public class UserBaseDAOImpl implements UserBaseDao {
     @Override
     public void add(UserBase... userBases) {
         for (UserBase user : userBases) {
-            String now = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+            String now = TimeUtils.nowTime();
             try {
                 Connection connection = MyDbUtils.connection();
-                String sql = "INSERT INTO user_base VALUES(?,?,?,?,?,?,?,?,?) ";
+                String sql = "INSERT INTO user_base VALUES(?,?,?,?,?,?,?,?,?,?) ";
                 PreparedStatement statement = connection.prepareStatement(sql);
                 statement.setString(1, user.getUserName());
                 statement.setString(2, user.getNickName());
@@ -116,8 +109,9 @@ public class UserBaseDAOImpl implements UserBaseDao {
                 statement.setString(5, user.getIdentityCard());
                 statement.setString(6, user.getEmail());
                 statement.setString(7, user.getPhone());
-                statement.setString(8, now);
+                statement.setString(8, user.getPassWord());
                 statement.setString(9, now);
+                statement.setString(10, now);
                 statement.execute();
                 statement.close();
                 connection.close();
@@ -137,15 +131,7 @@ public class UserBaseDAOImpl implements UserBaseDao {
             preparedStatement.setString(1, identityCard);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                String userName = resultSet.getString("user_name");
-                String nickName = resultSet.getString("nick_name");
-                String sex = resultSet.getString("sex");
-                String workUnit = resultSet.getString("work_unit");
-                String email = resultSet.getString("email");
-                String phone = resultSet.getString("phone");
-                String createTime = resultSet.getString("create_time");
-                String updateTime = resultSet.getString("update_time");
-                user = new UserBase(userName, nickName, sex, workUnit, identityCard, email, phone, createTime, updateTime);
+                user = getUserBase(resultSet);
             }
             preparedStatement.close();
             resultSet.close();
@@ -154,5 +140,20 @@ public class UserBaseDAOImpl implements UserBaseDao {
             e.printStackTrace();
         }
         return user;
+    }
+
+    @NotNull
+    private UserBase getUserBase(ResultSet resultSet) throws SQLException {
+        String userName = resultSet.getString("user_name");
+        String nickName = resultSet.getString("nick_name");
+        String sex = resultSet.getString("sex");
+        String workUnit = resultSet.getString("work_unit");
+        String identityCard = resultSet.getString("identity_card");
+        String email = resultSet.getString("email");
+        String phone = resultSet.getString("phone");
+        String passWord = resultSet.getString("password");
+        String createTime = resultSet.getString("create_time");
+        String updateTime = resultSet.getString("update_time");
+        return new UserBase(userName, nickName, sex, workUnit, identityCard, email, phone, passWord, createTime, updateTime);
     }
 }

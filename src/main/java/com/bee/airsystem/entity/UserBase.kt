@@ -1,13 +1,14 @@
 package com.bee.airsystem.entity
 
 data class UserBase(
-        var userName: String = "",
-        var nickName: String = "",
-        var sex: String = "",
-        var workUnit: String = "",
-        var identityCard: String = "",
-        var email: String = "",
-        var phone: String = "",
+        var userName: String? = "",
+        var nickName: String? = "",
+        var sex: String? = "",
+        var workUnit: String? = "",
+        var identityCard: String? = "",
+        var email: String? = "",
+        var phone: String? = "",
+        var passWord: String? = "",
         var createTime: String? = "",
         var updateTime: String? = ""
 ) {

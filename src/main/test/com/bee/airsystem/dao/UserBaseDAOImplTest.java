@@ -26,12 +26,12 @@ public class UserBaseDAOImplTest {
 
     @Test
     public void update() {
-        dao.update(new UserBase("hello","word","男","怕怕","949323","8888","13333","",""));
+        dao.update(new UserBase("hello","word","男","怕怕","949323","8888","13333","","",""));
     }
 
     @Test
     public void add() {
-        dao.add(new UserBase("hello","word","女","怕怕","949323","8888","13333","",""));
+        dao.add(new UserBase("hello","word","女","怕怕","949323","8888","13333","","",""));
 
     }
 

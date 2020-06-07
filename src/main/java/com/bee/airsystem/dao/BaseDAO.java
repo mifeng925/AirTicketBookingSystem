@@ -37,7 +37,7 @@ interface BaseDAO<T> {
      * @param ts 实体
      */
 
-    @SuppressWarnings("varargs")
+    @SuppressWarnings("vararg")
     void add(final T... ts);
 
 }
