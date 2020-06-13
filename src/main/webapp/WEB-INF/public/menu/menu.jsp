@@ -64,9 +64,9 @@
         </a>
         </li>
         <li class="nav-item">
-        <a href="./student" class="nav-link${(requestScope.path eq "/admin/perm")?" active":""}">
+        <a href="./flight" class="nav-link${(requestScope.path eq "/admin/perm")?" active":""}">
         <i class="far fa-circle nav-icon"></i>
-        <p>权限管理</p>
+        <p>航班管理</p>
         </a>
         </li>
         </ul>

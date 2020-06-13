@@ -21,6 +21,7 @@ public class RequestUtils {
      * @throws IOException      if the target resource throws this exception
      */
     public static void forward(String path, ServletRequest request, ServletResponse response) throws ServletException, IOException {
+
         request.getRequestDispatcher(path).forward(request, response);
     }
 
