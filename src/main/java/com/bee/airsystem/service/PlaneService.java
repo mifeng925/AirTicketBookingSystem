@@ -1,4 +1,4 @@
-package com.bee.airsystem.servlet;
+package com.bee.airsystem.service;
 
 import com.bee.airsystem.entity.Plane;
 
@@ -8,7 +8,7 @@ import java.util.List;
  * @author ：Bee
  * @date ：Created in 2020/6/7 13:49
  */
-public interface PlaneServlet {
+public interface PlaneService {
 
     /**
      * 获取所有飞机

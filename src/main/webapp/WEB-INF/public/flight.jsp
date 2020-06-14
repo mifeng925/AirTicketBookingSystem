@@ -185,6 +185,22 @@
     <input type="hidden" name="opt" id="opt">
     <input type="hidden" name="_id" id="_id">
 </form>
+<script>
+    $(function () {
+        //Date range picker
+        $('#reservation').daterangepicker();
 
+    })
+
+    function del() {
+        document.getElementById("hiddenForm").submit();
+    }
+
+    function selectDel(id) {
+        document.getElementById("opt").value = "del";
+        document.getElementById("_id").value = id;
+    }
+
+</script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-package com.bee.airsystem.servlet;
+package com.bee.airsystem.service;
 
 import com.bee.airsystem.dao.PlaneDAO;
 import com.bee.airsystem.dao.PlaneDAOBImpl;
@@ -10,7 +10,7 @@ import java.util.List;
  * @author ：Bee
  * @date ：Created in 2020/6/7 13:49
  */
-public class PlaneServletImpl implements PlaneServlet {
+public class PlaneServiceImpl implements PlaneService {
 
     PlaneDAO planeDAO = new PlaneDAOBImpl();
 

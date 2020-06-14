@@ -35,9 +35,9 @@
         </a>
         <ul class="nav nav-treeview">
         <li class="nav-item">
-        <a href="./band" class="nav-link${(requestScope.path eq "/admin/band")?" active":""}">
+        <a href="/reserve" class="nav-link${(requestScope.path eq "/admin/band")?" active":""}">
         <i class="far fa-circle nav-icon"></i>
-        <p>班级管理</p>
+        <p>预定机票</p>
         </a>
         </li>
         <li class="nav-item">

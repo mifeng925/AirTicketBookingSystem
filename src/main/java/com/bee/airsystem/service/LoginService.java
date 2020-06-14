@@ -1,4 +1,4 @@
-package com.bee.airsystem.servlet;
+package com.bee.airsystem.service;
 
 import com.bee.airsystem.entity.UserBase;
 
@@ -6,7 +6,7 @@ import com.bee.airsystem.entity.UserBase;
  * @author ：Bee
  * @date ：Created in 2020/6/5 16:26
  */
-public interface LoginServlet {
+public interface LoginService {
 
     /**
      * 登录

@@ -2,8 +2,8 @@ package com.bee.airsystem.controller;
 
 import com.bee.airsystem.config.WebConfig;
 import com.bee.airsystem.entity.UserBase;
-import com.bee.airsystem.servlet.LoginServlet;
-import com.bee.airsystem.servlet.LoginServletImpl;
+import com.bee.airsystem.service.LoginService;
+import com.bee.airsystem.service.LoginServiceImpl;
 import com.bee.airsystem.utils.RequestUtils;
 
 import javax.servlet.ServletException;
@@ -34,7 +34,7 @@ public class LoginController extends HttpServlet {
         String captcha = req.getParameter("captcha");
         String coed = (String) req.getSession().getAttribute("code");
 
-        LoginServlet servlet = new LoginServletImpl();
+        LoginService servlet = new LoginServiceImpl();
         UserBase u = servlet.login(user, psw);
         String result = "";
         if (Objects.equals(user, "") || Objects.equals(psw, "")) {

@@ -1,8 +1,8 @@
 package com.bee.airsystem.controller;
 
 import com.bee.airsystem.config.WebConfig;
-import com.bee.airsystem.servlet.LoginServlet;
-import com.bee.airsystem.servlet.LoginServletImpl;
+import com.bee.airsystem.service.LoginService;
+import com.bee.airsystem.service.LoginServiceImpl;
 import com.bee.airsystem.utils.RequestUtils;
 
 import javax.servlet.ServletException;
@@ -50,7 +50,7 @@ public class RegisterController extends HttpServlet {
             req.setAttribute("msg", result);
             doGet(req, resp);
         } else {
-            LoginServlet servlet = new LoginServletImpl();
+            LoginService servlet = new LoginServiceImpl();
             servlet.registeredUser(userName, nickName, id, work, email, phone, pdw1);
             resp.sendRedirect("/login");
         }

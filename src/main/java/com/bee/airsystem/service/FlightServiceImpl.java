@@ -1,4 +1,4 @@
-package com.bee.airsystem.servlet;
+package com.bee.airsystem.service;
 
 import com.bee.airsystem.dao.FlightDAO;
 import com.bee.airsystem.dao.FlightDAOImpl;
@@ -13,7 +13,7 @@ import java.util.List;
  * @author ：Bee
  * @date ：Created in 2020/6/7 19:23
  */
-public class FlightServletImpl implements FlightServlet {
+public class FlightServiceImpl implements FlightService {
 
     FlightDAO flightDAO = new FlightDAOImpl();
 
@@ -47,6 +47,11 @@ public class FlightServletImpl implements FlightServlet {
     @Override
     public Flight findFlightById(int id) {
         return flightDAO.findFlightById(id);
+    }
+
+    @Override
+    public List<Flight> searchFlight(String departure, String destination) {
+        return flightDAO.search(departure,destination);
     }
 
 }

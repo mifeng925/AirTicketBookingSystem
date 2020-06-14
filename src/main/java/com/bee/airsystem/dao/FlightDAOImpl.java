@@ -37,7 +37,6 @@ public class FlightDAOImpl implements FlightDAO {
         return flights;
     }
 
-
     @Override
     public boolean delete(Flight flight) {
         boolean result = false;
@@ -139,6 +138,29 @@ public class FlightDAOImpl implements FlightDAO {
         return null;
     }
 
+    @Override
+    public List<Flight> search(String departure, String destination) {
+        List<Flight> flights = new ArrayList<>();
+        try {
+            Connection connection = MyDbUtils.connection();
+            String sql = "SELECT * From flight WHERE departure LIKE ? AND destination LIKE ? AND start_time>sysdate()";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, "%" + departure + "%");
+            preparedStatement.setString(2, "%" + destination + "%");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Flight flight = getFlights(resultSet, false);
+                flights.add(flight);
+            }
+            preparedStatement.close();
+            resultSet.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return flights;
+    }
+
     private Flight getFlights(ResultSet resultSet, boolean havaName) throws SQLException {
         int id = resultSet.getInt("_id");
         String planeId = resultSet.getString("plane_id");
@@ -149,7 +171,7 @@ public class FlightDAOImpl implements FlightDAO {
         String startTime = resultSet.getString("start_time");
         String arrivalTime = resultSet.getString("arrival_time");
 
-        if (havaName ) {
+        if (havaName) {
             String name = resultSet.getString("name");
             return new Flight(id, planeId, name, departure, destination, price, flag, startTime, arrivalTime);
         } else {

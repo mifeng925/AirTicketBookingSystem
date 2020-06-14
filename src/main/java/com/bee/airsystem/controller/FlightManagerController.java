@@ -3,8 +3,8 @@ package com.bee.airsystem.controller;
 import com.bee.airsystem.config.WebConfig;
 import com.bee.airsystem.entity.Flight;
 import com.bee.airsystem.entity.Plane;
-import com.bee.airsystem.servlet.FlightServlet;
-import com.bee.airsystem.servlet.FlightServletImpl;
+import com.bee.airsystem.service.FlightService;
+import com.bee.airsystem.service.FlightServiceImpl;
 import com.bee.airsystem.utils.RequestUtils;
 
 import javax.servlet.ServletException;
@@ -22,7 +22,7 @@ import java.util.List;
 @WebServlet("/flight")
 public class FlightManagerController extends HttpServlet {
 
-    FlightServlet flightServlet = new FlightServletImpl();
+    FlightService flightServlet = new FlightServiceImpl();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -49,10 +49,6 @@ public class FlightManagerController extends HttpServlet {
                 req.setAttribute("endTime", flight.getArrivalTime());
                 RequestUtils.forward(WebConfig.rootPath + "/flight/add.jsp", req, resp);
                 break;
-            case "del":
-                String id = req.getParameter("_id");
-                flightServlet.del(id);
-                break;
             default:
                 List<Flight> all = flightServlet.getAllFlight();
                 req.setAttribute("flights", all);
@@ -62,17 +58,27 @@ public class FlightManagerController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String id = req.getParameter("id");
-        id = id == "" ? "0" : id;
-        String plane = req.getParameter("plane");
-        String departure = req.getParameter("departure");
-        String destination = req.getParameter("destination");
-        String price = req.getParameter("price");
-        String flag = req.getParameter("flag");
-        String startTime = req.getParameter("startTime");
-        String endTime = req.getParameter("endTime");
-        Flight flight = new Flight(Integer.parseInt(id), plane, departure, destination, Double.parseDouble(price), Integer.parseInt(flag), startTime, endTime);
-        flightServlet.inset(flight);
+        String opt = req.getParameter("opt");
+        //解决空指针异常
+        opt = opt == null ? "" : opt;
+        switch (opt) {
+            case "del":
+                String id = req.getParameter("_id");
+                flightServlet.del(id);
+                break;
+            default:
+                String id1 = req.getParameter("id");
+                id1 = id1 == "" ? "0" : id1;
+                String plane = req.getParameter("plane");
+                String departure = req.getParameter("departure");
+                String destination = req.getParameter("destination");
+                String price = req.getParameter("price");
+                String flag = req.getParameter("flag");
+                String startTime = req.getParameter("startTime");
+                String endTime = req.getParameter("endTime");
+                Flight flight = new Flight(Integer.parseInt(id1), plane, departure, destination, Double.parseDouble(price), Integer.parseInt(flag), startTime, endTime);
+                flightServlet.inset(flight);
+        }
         doGet(req, resp);
     }
 }

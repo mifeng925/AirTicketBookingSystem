@@ -1,15 +1,13 @@
-package com.bee.airsystem.servlet;
+package com.bee.airsystem.service;
 
 import com.bee.airsystem.entity.UserBase;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
-public class LoginServletImplTest {
+public class LoginServiceImplTest {
 
     @Test
     public void login() {
-        LoginServlet servlet = new LoginServletImpl();
+        LoginService servlet = new LoginServiceImpl();
         UserBase login = servlet.login("949323", "123");
         System.out.println(login);
     }

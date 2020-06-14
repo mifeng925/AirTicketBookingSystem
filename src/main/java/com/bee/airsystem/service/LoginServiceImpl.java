@@ -1,15 +1,14 @@
-package com.bee.airsystem.servlet;
+package com.bee.airsystem.service;
 
 import com.bee.airsystem.dao.UserBaseDAOImpl;
 import com.bee.airsystem.dao.UserBaseDao;
 import com.bee.airsystem.entity.UserBase;
-import com.bee.airsystem.utils.TimeUtils;
 
 /**
  * @author ：Bee
  * @date ：Created in 2020/6/5 16:26
  */
-public class LoginServletImpl implements LoginServlet {
+public class LoginServiceImpl implements LoginService {
 
     UserBaseDao baseDao = new UserBaseDAOImpl();
 
