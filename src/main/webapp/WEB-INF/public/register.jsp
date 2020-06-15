@@ -77,7 +77,7 @@
                             </div>
                             <!-- /.col -->
                             <div class="col-4">
-                                <img class="form-control" src="/captcha">
+                                <img class="form-control" src="/captcha" onclick="change()" id="captcha"/>
                             </div>
                             <!-- /.col -->
                         </div>
@@ -215,6 +215,10 @@
             }
         });
     });
+
+    function change(){
+        document.getElementById("captcha").src="captcha?"+Math.random();
+    }
 </script>
 </body>
 </html>

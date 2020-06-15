@@ -71,7 +71,7 @@
                     </div>
                     <!-- /.col -->
                     <div class="col-4">
-                        <img class="form-control" src="/captcha">
+                        <img class="form-control" src="/captcha" onclick="change()" id="captcha"/>
                     </div>
                     <!-- /.col -->
                 </div>
@@ -100,6 +100,12 @@
 <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/dist/js/adminlte.min.js"></script>
+
+<script>
+    function change(){
+        document.getElementById("captcha").src="captcha?"+Math.random();
+    }
+</script>
 
 </body>
 </html>
