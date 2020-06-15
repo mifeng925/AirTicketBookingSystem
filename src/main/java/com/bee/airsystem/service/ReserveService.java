@@ -12,4 +12,18 @@ public interface ReserveService {
      * @param flightId 航班id
      */
     void issueTickets(String userId, String flightId);
+
+    /**
+     * 通过id删除预定航班
+     *
+     * @param id id信息
+     */
+    void delById(String id);
+
+    /**
+     * 登机
+     *
+     * @param id 预定id
+     */
+    void boarding(String id);
 }

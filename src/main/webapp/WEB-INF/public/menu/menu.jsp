@@ -41,9 +41,9 @@
         </a>
         </li>
         <li class="nav-item">
-        <a href="./student" class="nav-link${(requestScope.path eq "/admin/student")?" active":""}">
+        <a href="/ticket" class="nav-link${(requestScope.path eq "/admin/student")?" active":""}">
         <i class="far fa-circle nav-icon"></i>
-        <p>学生信息管理</p>
+        <p>我的机票</p>
         </a>
         </li>
         </ul>

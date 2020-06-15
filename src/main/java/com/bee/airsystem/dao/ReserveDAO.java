@@ -8,4 +8,25 @@ import com.bee.airsystem.entity.Reserve;
  */
 public interface ReserveDAO extends BaseDAO<Reserve> {
 
+    /**
+     * 通过id删除
+     *
+     * @param id id
+     * @return 成功返回true
+     */
+    boolean deleteById(String id);
+
+    /**
+     * 登机
+     *
+     * @param id id
+     */
+    void boarding(String id);
+
+    /**
+     * 延误
+     *
+     * @param id id
+     */
+    void delayed(int id);
 }

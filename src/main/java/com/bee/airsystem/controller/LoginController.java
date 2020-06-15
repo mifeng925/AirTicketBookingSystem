@@ -49,7 +49,7 @@ public class LoginController extends HttpServlet {
             resp.sendRedirect("/main");
         } else {
             req.setAttribute("msg", result);
-            req.setAttribute("u", user);
+            req.getSession().setAttribute("user", user);
             doGet(req, resp);
         }
 

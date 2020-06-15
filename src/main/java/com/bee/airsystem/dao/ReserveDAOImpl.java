@@ -49,4 +49,53 @@ public class ReserveDAOImpl implements ReserveDAO {
     }
 
 
+    @Override
+    public boolean deleteById(String id) {
+        boolean result = false;
+        try {
+            Connection cnn = MyDbUtils.connection();
+            String sql = "DELETE FROM user_reserve WHERE _id=?";
+            PreparedStatement statement = cnn.prepareStatement(sql);
+            statement.setInt(1, Integer.parseInt(id));
+            int code = statement.executeUpdate();
+            if (code >= 1) {
+                result = true;
+            }
+            statement.close();
+            cnn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    @Override
+    public void boarding(String id) {
+        try {
+            Connection cnn = MyDbUtils.connection();
+            String sql = "UPDATE user_reserve SET status=1 WHERE _id=?";
+            PreparedStatement statement = cnn.prepareStatement(sql);
+            statement.setInt(1, Integer.parseInt(id));
+            statement.execute();
+            statement.close();
+            cnn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void delayed(int id) {
+        try {
+            Connection cnn = MyDbUtils.connection();
+            String sql = "UPDATE user_reserve SET status=2 WHERE _id=?";
+            PreparedStatement statement = cnn.prepareStatement(sql);
+            statement.setInt(1, id);
+            statement.execute();
+            statement.close();
+            cnn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
