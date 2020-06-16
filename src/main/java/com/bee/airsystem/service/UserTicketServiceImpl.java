@@ -31,4 +31,10 @@ public class UserTicketServiceImpl implements UserTicketService {
         }
         return userTickets.size() > 0;
     }
+
+    @Override
+    public boolean pollingToStop(String userId) {
+        List<UserTicket> userTickets = ticketDAO.pollingToStop(userId);
+        return userTickets.size() > 0;
+    }
 }

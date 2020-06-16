@@ -25,4 +25,13 @@ public interface TicketDAO {
      */
     List<UserTicket> pollingDelay(String userId);
 
+    /**
+     * 轮询查询是否停机
+     *
+     * @param userId id
+     * @return 航班
+     */
+    List<UserTicket> pollingToStop(String userId);
+
+
 }

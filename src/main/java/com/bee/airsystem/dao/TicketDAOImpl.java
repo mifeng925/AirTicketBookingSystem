@@ -83,4 +83,30 @@ public class TicketDAOImpl implements TicketDAO {
         }
         return userTickets;
     }
+
+    @Override
+    public List<UserTicket> pollingToStop(String userId) {
+        List<UserTicket> userTickets = new ArrayList<>();
+        try {
+            Connection connection = MyDbUtils.connection();
+            String sql = "SELECT * FROM user_reserve ,flight WHERE " +
+                    "identity_card=? AND " +
+                    "user_reserve.flight_id=flight._id AND " +
+                    "flag =1";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, userId);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                int reserveId = resultSet.getInt("_id");
+                UserTicket ticket = new UserTicket(reserveId);
+                userTickets.add(ticket);
+            }
+            statement.close();
+            resultSet.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return userTickets;
+    }
 }

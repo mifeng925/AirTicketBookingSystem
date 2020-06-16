@@ -7,7 +7,6 @@
         style="opacity: .8">
         <span class="brand-text font-weight-light">机票预订系统</span>
         </a>
-
         <!-- Sidebar -->
         <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
@@ -26,22 +25,22 @@
         <!-- Add icons to the links using the .nav-icon class
         with font-awesome or any other icon font library -->
         <li class="nav-item has-treeview menu-open">
-        <a href="#" class="nav-link active">
-        <i class="nav-icon fas fa-tachometer-alt"></i>
+        <a href="" class="nav-link active">
+        <i class="nav-icon fas fa-border-all"></i>
         <p>
-        基础信息
+        机票管理
         <i class="right fas fa-angle-left"></i>
         </p>
         </a>
         <ul class="nav nav-treeview">
         <li class="nav-item">
-        <a href="/reserve" class="nav-link${(requestScope.path eq "/admin/band")?" active":""}">
+        <a href="/reserve" class="nav-link${(requestScope.path eq "/reserve")?" active":""}">
         <i class="far fa-circle nav-icon"></i>
         <p>预定机票</p>
         </a>
         </li>
         <li class="nav-item">
-        <a href="/ticket" class="nav-link${(requestScope.path eq "/admin/student")?" active":""}">
+        <a href="/ticket" class="nav-link${(requestScope.path eq "/ticket")?" active":""}">
         <i class="far fa-circle nav-icon"></i>
         <p>我的机票</p>
         </a>
@@ -50,35 +49,26 @@
         </li>
         <li class="nav-item has-treeview menu-open">
         <a href="#" class="nav-link active">
-        <i class="nav-icon fas fa-tachometer-alt"></i>
+        <i class="nav-icon fas fa-address-card"></i>
         <p>
-        超级管理
+        管理员系统
         <i class="right fas fa-angle-left"></i>
         </p>
         </a>
         <ul class="nav nav-treeview">
         <li class="nav-item">
-        <a href="./planes" class="nav-link${(requestScope.path eq "/admin/user")?" active":""}">
+        <a href="./planes" class="nav-link${(requestScope.path eq "/planes")?" active":""}">
         <i class="far fa-circle nav-icon"></i>
         <p>飞机管理</p>
         </a>
         </li>
         <li class="nav-item">
-        <a href="./flight" class="nav-link${(requestScope.path eq "/admin/perm")?" active":""}">
+        <a href="./flight" class="nav-link${(requestScope.path eq "/flight")?" active":""}">
         <i class="far fa-circle nav-icon"></i>
         <p>航班管理</p>
         </a>
         </li>
         </ul>
-        </li>
-        <li class="nav-item">
-        <a href="#" class="nav-link">
-        <i class="nav-icon fas fa-th"></i>
-        <p>
-        Simple Link
-        <span class="right badge badge-danger">New</span>
-        </p>
-        </a>
         </li>
         </ul>
         </nav>

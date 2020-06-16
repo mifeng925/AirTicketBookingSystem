@@ -6,7 +6,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 3 | Projects</title>
+    <title>AirBee</title>
+    <link rel="icon" sizes="any" mask href="../../image/icon.png">
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
@@ -46,8 +47,9 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Projects</li>
+                            <li class="breadcrumb-item"><a href="/main">首页</a></li>
+                            <li class="breadcrumb-item"><a href="/reserve">预定机票</a></li>
+                            <li class="breadcrumb-item active">航班列表</li>
                         </ol>
                     </div>
                 </div>

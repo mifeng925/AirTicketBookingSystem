@@ -1,6 +1,9 @@
 package com.bee.airsystem.controller;
 
 import com.bee.airsystem.config.WebConfig;
+import com.bee.airsystem.entity.UserBase;
+import com.bee.airsystem.service.UserTicketService;
+import com.bee.airsystem.service.UserTicketServiceImpl;
 import com.bee.airsystem.utils.RequestUtils;
 
 import javax.servlet.ServletException;
@@ -19,6 +22,12 @@ public class MainController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        UserTicketService userTicketService = new UserTicketServiceImpl();
+        UserBase user = (UserBase) req.getSession().getAttribute("user");
+        boolean delayed = userTicketService.pollingDelay(user.getIdentityCard());
+        boolean stop = userTicketService.pollingToStop(user.getIdentityCard());
+        req.setAttribute("delayed", delayed);
+        req.setAttribute("stop", stop);
         RequestUtils.forward(WebConfig.rootPath + "main.jsp", req, resp);
     }
 
