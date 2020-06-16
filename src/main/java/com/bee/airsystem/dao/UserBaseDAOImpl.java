@@ -100,7 +100,7 @@ public class UserBaseDAOImpl implements UserBaseDao {
             String now = TimeUtils.nowTime();
             try {
                 Connection connection = MyDbUtils.connection();
-                String sql = "INSERT INTO user_base VALUES(?,?,?,?,?,?,?,?,?,?) ";
+                String sql = "INSERT INTO user_base VALUES(?,?,?,?,?,?,?,?,?,?,?) ";
                 PreparedStatement statement = connection.prepareStatement(sql);
                 statement.setString(1, user.getUserName());
                 statement.setString(2, user.getNickName());
@@ -110,8 +110,9 @@ public class UserBaseDAOImpl implements UserBaseDao {
                 statement.setString(6, user.getEmail());
                 statement.setString(7, user.getPhone());
                 statement.setString(8, user.getPassWord());
-                statement.setString(9, now);
+                statement.setInt(9, user.getPower());
                 statement.setString(10, now);
+                statement.setString(11, now);
                 statement.execute();
                 statement.close();
                 connection.close();
@@ -151,9 +152,10 @@ public class UserBaseDAOImpl implements UserBaseDao {
         String identityCard = resultSet.getString("identity_card");
         String email = resultSet.getString("email");
         String phone = resultSet.getString("phone");
+        int power = resultSet.getInt("power");
         String passWord = resultSet.getString("password");
         String createTime = resultSet.getString("create_time");
         String updateTime = resultSet.getString("update_time");
-        return new UserBase(userName, nickName, sex, workUnit, identityCard, email, phone, passWord, createTime, updateTime);
+        return new UserBase(userName, nickName, sex, workUnit, identityCard, email, power, phone, passWord, createTime, updateTime);
     }
 }

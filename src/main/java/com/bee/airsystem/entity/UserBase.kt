@@ -7,6 +7,7 @@ data class UserBase(
         var workUnit: String? = "",
         var identityCard: String? = "",
         var email: String? = "",
+        var power: Int = 0,
         var phone: String? = "",
         var passWord: String? = "",
         var createTime: String? = "",

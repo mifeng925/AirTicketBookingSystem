@@ -1,5 +1,7 @@
 package com.bee.airsystem.filter;
 
+import com.bee.airsystem.entity.UserBase;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -21,18 +23,31 @@ public class ApplicationFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         String servletPath = request.getServletPath();
-        if ("/login".equals(servletPath) || "/captcha".equals(servletPath)
+
+        if ("/login".equals(servletPath) || "/register".equals(servletPath) ||"/captcha".equals(servletPath)
                 || servletPath.startsWith("/plugins/") || servletPath.startsWith("/dist/")) {
             filterChain.doFilter(servletRequest, servletResponse);
         } else {
-            Object obj = request.getSession().getAttribute("user");
-            if (obj != null) {
+            UserBase user = (UserBase) request.getSession().getAttribute("user");
+            if (user != null) {
                 request.setAttribute("path", servletPath);
-                filterChain.doFilter(servletRequest, servletResponse);
+
+                if (user.getPower() > 3) {
+                    filterChain.doFilter(servletRequest, servletResponse);
+                } else {
+                    if ("/planes".equals(servletPath) || "/flight".equals(servletPath)) {
+                        ((HttpServletResponse) servletResponse).sendRedirect("./main");
+                    } else {
+                        filterChain.doFilter(servletRequest, servletResponse);
+                    }
+                }
+
+
             } else {
                 ((HttpServletResponse) servletResponse).sendRedirect("./login");
             }
         }
+
     }
 
     @Override

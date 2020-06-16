@@ -47,29 +47,32 @@
         </li>
         </ul>
         </li>
-        <li class="nav-item has-treeview menu-open">
-        <a href="#" class="nav-link active">
-        <i class="nav-icon fas fa-address-card"></i>
-        <p>
-        管理员系统
-        <i class="right fas fa-angle-left"></i>
-        </p>
-        </a>
-        <ul class="nav nav-treeview">
-        <li class="nav-item">
-        <a href="./planes" class="nav-link${(requestScope.path eq "/planes")?" active":""}">
-        <i class="far fa-circle nav-icon"></i>
-        <p>飞机管理</p>
-        </a>
-        </li>
-        <li class="nav-item">
-        <a href="./flight" class="nav-link${(requestScope.path eq "/flight")?" active":""}">
-        <i class="far fa-circle nav-icon"></i>
-        <p>航班管理</p>
-        </a>
-        </li>
-        </ul>
-        </li>
+        <c:if test="${user.power>3}">
+            <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link active">
+            <i class="nav-icon fas fa-address-card"></i>
+            <p>
+            管理员系统
+            <i class="right fas fa-angle-left"></i>
+            </p>
+            </a>
+            <ul class="nav nav-treeview">
+            <li class="nav-item">
+            <a href="./planes" class="nav-link${(requestScope.path eq "/planes")?" active":""}">
+            <i class="far fa-circle nav-icon"></i>
+            <p>飞机管理</p>
+            </a>
+            </li>
+            <li class="nav-item">
+            <a href="./flight" class="nav-link${(requestScope.path eq "/flight")?" active":""}">
+            <i class="far fa-circle nav-icon"></i>
+            <p>航班管理</p>
+            </a>
+            </li>
+            </ul>
+            </li>
+        </c:if>
+
         </ul>
         </nav>
         <!-- /.sidebar-menu -->

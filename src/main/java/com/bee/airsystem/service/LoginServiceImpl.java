@@ -24,6 +24,6 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public void registeredUser(String userName, String nickName, String id, String work, String email, String phone, String pdw1) {
-        baseDao.add(new UserBase(userName, nickName, "男", work, id, email, phone, pdw1, null, null));
+        baseDao.add(new UserBase(userName, nickName, "男", work, id, email, 0, phone, pdw1, null, null));
     }
 }
